@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - GymRutz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="corpo-login">
+
+  <div class="caixa-login">
+    <div class="login-topo">
+      <h1>GymRutz</h1>
+      <p>Acesse sua conta para treinar</p>
+    </div>
+
+    <hr> <!-- quebra a pagina com uma linha -->
+
+
+    <!-- log de formulario -->
+    <div class="form-login">
+      <p>
+        Usuário:<br>
+        <input type="text" id="username" placeholder="Digite seu usuário">
+      </p>
+      
+      <p>
+        Senha:<br>
+        <input type="password" id="password" placeholder="******">
+      </p>
+    
+      <div class="opcoes">
+        <input type="checkbox" id="rememberMe"> Lembrar-me
+      </div>
+
+      <button id="btnLogin" class="btn-entrar">ENTRAR</button>
+      
+      <div class="ou">ou</div>
+      
+      <button id="btnCadastrar" class="btn-registrar">CRIAR NOVA CONTA</button>
+    </div>
+  </div>
+
+  <div id="forgotModal" class="modal-simples" style="display:none">
+    <div class="modal-conteudo">
+      <h3>Recuperar Senha</h3>
+      <p>Informe seu usuário:</p>
+      <input type="text" id="recoverUser">
+      <br><br>
+      <button id="btnRecover">Enviar</button>
+      <button id="btnCloseModal">Fechar</button>
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>
