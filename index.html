@@ -21,31 +21,78 @@
             <span>💪</span>
             <span id="headerUser">Atleta</span>
         </div>
+
     </div>
-    
+
     <div class="container">
 
-    <div class="menu" id="sidebar">
+        <div class="menu" id="sidebar">
 
-        <p>MENU</p>
+            <p>MENU</p>
 
-        <button class="link-menu" data-section="home">Início</button>
-        <button class="link-menu" data-section="exercicios">Ver Treinos</button>
-        <button class="link-menu" data-section="novo">Novo Exercício</button>
-        <button class="link-menu" data-section="stats">Evolução</button>
-        <button class="link-menu" data-section="sobre">Sobre</button>
+            <button class="link-menu" data-section="home">🏠 Início</button>
+            <button class="link-menu" data-section="exercicios">📋 Ver Treinos</button>
+            <button class="link-menu" data-section="novo">➕ Novo Exercício</button>
+            <button class="link-menu" data-section="stats">📈 Evolução</button>
+            <button class="link-menu" data-section="sobre">ℹ️ Sobre</button>
 
-        <br>
+            <br>
 
-        <a href="login.html" class="link-menu">Sair</a>
+            <a href="login.html" class="link-menu">🚪 Sair</a>
+
+        </div>
+
+        <div class="conteudo">
+
+            <div class="tela active" id="section-home">
+
+                <h1>BORA TREINAR!</h1>
+
+                <div class="cards-topo">
+
+                    <div class="card">
+                        <p>Exercícios</p>
+                        <h2 id="statTotal">0</h2>
+                    </div>
+
+                    <div class="card">
+                        <p>Músculos</p>
+                        <h2 id="statGrupos">0</h2>
+                    </div>
+
+                    <div class="card">
+                        <p>Carga Máx</p>
+                        <h2 id="statMaxPeso">0kg</h2>
+                    </div>
+
+                </div>
+
+                <div class="bloco">
+
+                    <h3>Últimos Treinos</h3>
+
+                    <table border="1">
+
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Grupo</th>
+                                <th>Séries</th>
+                                <th>Peso</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="homeTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
-
-    <div class="conteudo">
-
-    </div>
-
-</div>
 
 </body>
 
