@@ -90,6 +90,44 @@
 
             </div>
 
+            <div class="tela" id="section-exercicios">
+
+                <h1>MEUS EXERCÍCIOS</h1>
+
+                <div class="bloco">
+
+                    <select id="filtroGrupo">
+                        <option value="">Filtrar...</option>
+                        <option value="peito">Peito</option>
+                        <option value="costas">Costas</option>
+                        <option value="pernas">Pernas</option>
+                    </select>
+
+                    <table border="1" width="100%">
+
+                        <thead>
+                            <tr>
+                                <th>Exercício</th>
+                                <th>Grupo</th>
+                                <th>Séries</th>
+                                <th>Reps</th>
+                                <th>Peso</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="mainTableBody"></tbody>
+
+                    </table>
+
+                    <div id="emptyState" style="display:none">
+                        Nada cadastrado ainda.
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
 
     </div>
