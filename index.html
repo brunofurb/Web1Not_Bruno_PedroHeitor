@@ -29,50 +29,37 @@
         <div class="menu" id="sidebar">
 
             <p>MENU</p>
-
             <button class="link-menu" data-section="home">🏠 Início</button>
             <button class="link-menu" data-section="exercicios">📋 Ver Treinos</button>
             <button class="link-menu" data-section="novo">➕ Novo Exercício</button>
             <button class="link-menu" data-section="stats">📈 Evolução</button>
             <button class="link-menu" data-section="sobre">ℹ️ Sobre</button>
-
             <br>
-
             <a href="login.html" class="link-menu">🚪 Sair</a>
-
         </div>
 
         <div class="conteudo">
 
             <div class="tela active" id="section-home">
-
                 <h1>BORA TREINAR!</h1>
-
                 <div class="cards-topo">
-
                     <div class="card">
                         <p>Exercícios</p>
                         <h2 id="statTotal">0</h2>
                     </div>
-
                     <div class="card">
                         <p>Músculos</p>
                         <h2 id="statGrupos">0</h2>
                     </div>
-
                     <div class="card">
                         <p>Carga Máx</p>
                         <h2 id="statMaxPeso">0kg</h2>
                     </div>
-
                 </div>
 
                 <div class="bloco">
-
                     <h3>Últimos Treinos</h3>
-
                     <table border="1">
-
                         <thead>
                             <tr>
                                 <th>Nome</th>
@@ -123,10 +110,53 @@
                     <div id="emptyState" style="display:none">
                         Nada cadastrado ainda.
                     </div>
-
                 </div>
-
             </div>
+            <div class="tela" id="section-novo">
+                <h1>CADASTRAR NOVO</h1>
+                <div class="form">
+                    <p>Nome: <input type="text" id="nome"></p>
+                    <p>Grupo:
+                        <select id="grupo">
+                            <option value="">Escolha...</option>
+                            <option value="peito">Peito</option>
+                            <option value="costas">Costas</option>
+                            <option value="pernas">Pernas</option>
+                            <option value="ombros">Ombros</option>
+                            <option value="biceps">Bíceps</option>
+                            <option value="triceps">Tríceps</option>
+                        </select>
+                    </p>
+                    <p>Séries: <input type="number" id="series"></p>
+                    <p>Reps: <input type="number" id="reps"></p>
+                    <p>Peso (kg): <input type="number" id="peso"></p>
+                    <p>Obs: <input type="text" id="obs"></p>
+
+                    <button id="btnSalvar">SALVAR</button>
+                    <button id="btnLimpar">LIMPAR</button>
+                    <button id="btnCancelarEdicao" style="display:none">CANCELAR</button>
+                    <input type="hidden" id="editId">
+                </div>
+            </div>
+
+            <div class="tela" id="section-stats">
+                <h1>MINHA EVOLUÇÃO</h1>
+                <div class="cards-topo" id="bigStatsRow"></div>
+                <div class="bloco">
+                    <h3>Total por Grupo</h3>
+                    <div id="statsGroupContent"></div>
+                </div>
+            </div>
+
+            <div class="tela" id="section-sobre">
+                <h1>SOBRE</h1>
+                <p>Sistema feito para aula de Programação Web.</p>
+                <p>Alunos: Pedro Heitor e Bruno Pedron</p>
+            </div>
+
+        </div> </div> <div id="toast"></div>
+
+        <script src="app.js"></script>
 
         </div>
 
