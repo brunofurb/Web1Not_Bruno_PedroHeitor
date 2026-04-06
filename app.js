@@ -26,6 +26,8 @@ var usuario = sessionStorage.getItem("loggedUser");
 if (usuario) {
     // mostra o nome no topo da página
     document.getElementById("headerUser").innerText = usuario;
+} else {
+    document.getElementById("headerUser").innerText = "Visitante"
 }
 
 
