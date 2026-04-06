@@ -1,25 +1,32 @@
-// elementos da página
 const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
+const rememberCheckbox = document.getElementById("rememberMe");
 
 const btnLogin = document.getElementById("btnLogin");
 
-// evento de clique no botão de login
+if (localStorage.getItem("rememberUser")) {
+    usernameInput.value = localStorage.getItem("rememberUser");
+    rememberCheckbox.checked = true;
+}
+
 btnLogin.addEventListener("click", function () {
 
     const user = usernameInput.value.trim();
     const pass = passwordInput.value.trim();
 
-    // validação simples
     if (user === "" || pass === "") {
         alert("Preencha usuário e senha.");
         return;
     }
 
-    // salva usuário na sessão
+    if (rememberCheckbox.checked) {
+        localStorage.setItem("rememberUser", user);
+    } else {
+        localStorage.removeItem("rememberUser");
+    }
+
     sessionStorage.setItem("loggedUser", user);
 
-    // redireciona para o sistema
     window.location.href = "index.html";
 
 });
