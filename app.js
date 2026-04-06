@@ -1,164 +1,365 @@
-// --- DADOS DO SISTEMA ---
-// Pega os dados ou cria um array vazio se não tiver nada
-var dadosSalvos = localStorage.getItem('gymrutz_dados');
+// ============================
+// DADOS DO SISTEMA
+// ============================
+
+// pega os dados salvos no navegador
+var dadosSalvos = localStorage.getItem("gymrutz_dados");
+
+// array que vai guardar os exercícios
 var exercicios = [];
 
+// se existir algo salvo no navegador
 if (dadosSalvos != null) {
+    // transforma o texto salvo em objeto novamente
     exercicios = JSON.parse(dadosSalvos);
 }
 
-// --- NAVEGAÇÃO (JEITO MAIS SIMPLES) ---
-function trocarTela(idDaTela) {
-    // Pega todas as telas e esconde
-    var todasAsTelas = document.querySelectorAll('.tela');
-    for (var i = 0; i < todasAsTelas.length; i++) {
-        todasAsTelas[i].style.display = 'none';
+
+// ============================
+// CARREGAR USUÁRIO DO LOGIN
+// ============================
+
+// pega o usuário salvo na sessão
+var usuario = sessionStorage.getItem("loggedUser");
+
+// se existir usuário logado
+if (usuario) {
+    // mostra o nome no topo da página
+    document.getElementById("headerUser").innerText = usuario;
+}
+
+
+// ============================
+// LOGO VOLTA PARA HOME
+// ============================
+
+// quando clicar na logo
+document.getElementById("logoBtn").onclick = function () {
+
+    // volta para a tela inicial
+    trocarTela("section-home");
+
+};
+
+
+// ============================
+// NAVEGAÇÃO ENTRE TELAS
+// ============================
+
+// função que troca a tela do sistema
+function trocarTela(idTela) {
+
+    // pega todas as telas
+    var telas = document.querySelectorAll(".tela");
+
+    // esconde todas
+    for (var i = 0; i < telas.length; i++) {
+        telas[i].style.display = "none";
     }
-    // Mostra só a que eu cliquei
-    document.getElementById(idDaTela).style.display = 'block';
-    
-    // Atualiza os desenhos na tela
+
+    // mostra somente a tela escolhida
+    document.getElementById(idTela).style.display = "block";
+
+    // atualiza as tabelas
     desenharTabelas();
+
+    // atualiza os cards da home
     fazerResumoCards();
 }
 
-// Configura os cliques dos botões do menu
-var botoes = document.querySelectorAll('.link-menu');
-for (var j = 0; j < botoes.length; j++) {
-    botoes[j].onclick = function() {
-        var secao = this.getAttribute('data-section');
+
+// pega todos os botões do menu
+var botoesMenu = document.querySelectorAll(".link-menu");
+
+// adiciona evento de clique
+for (var i = 0; i < botoesMenu.length; i++) {
+
+    botoesMenu[i].onclick = function () {
+
+        // pega qual tela abrir
+        var secao = this.getAttribute("data-section");
+
         if (secao) {
-            trocarTela('section-' + secao);
+
+            trocarTela("section-" + secao);
+
         }
+
     };
+
 }
 
-// --- SALVAR EXERCÍCIO (O CORAÇÃO DO SISTEMA) ---
-document.getElementById('btnSalvar').onclick = function() {
-    var nomeInput = document.getElementById('nome').value;
-    var grupoInput = document.getElementById('grupo').value;
-    var seriesInput = document.getElementById('series').value;
-    var repsInput = document.getElementById('reps').value;
-    var pesoInput = document.getElementById('peso').value;
-    var idEdicao = document.getElementById('editId').value;
 
-    if (nomeInput == "" || grupoInput == "") {
-        alert("Preencha o nome e o grupo pelo menos!");
+// ============================
+// SALVAR EXERCÍCIO
+// ============================
+
+// botão salvar
+document.getElementById("btnSalvar").onclick = function () {
+
+    // pega valores do formulário
+    var nome = document.getElementById("nome").value.trim();
+    var grupo = document.getElementById("grupo").value;
+    var series = document.getElementById("series").value;
+    var reps = document.getElementById("reps").value;
+    var peso = document.getElementById("peso").value;
+
+    // pega id caso seja edição
+    var idEdicao = document.getElementById("editId").value;
+
+    // ======================
+    // VALIDAÇÃO DOS CAMPOS
+    // ======================
+
+    if (nome === "") {
+        alert("Digite o nome do exercício");
         return;
     }
 
-    // Objeto do exercício
-    var ex = {
-        id: idEdicao ? idEdicao : Math.random(), // id maluco pra não repetir
-        nome: nomeInput,
-        grupo: grupoInput,
-        series: seriesInput,
-        reps: repsInput,
-        peso: parseFloat(pesoInput) || 0
-    };
-
-    if (idEdicao != "") {
-        // Se tem ID, eu procuro e substituo (EDIÇÃO)
-        for (var k = 0; k < exercicios.length; k++) {
-            if (exercicios[k].id == idEdicao) {
-                exercicios[k] = ex;
-            }
-        }
-        document.getElementById('editId').value = "";
-    } else {
-        // Se não tem ID, é NOVO
-        exercicios.push(ex);
+    if (grupo === "") {
+        alert("Escolha um grupo muscular");
+        return;
     }
 
-    // Salva no navegador
-    localStorage.setItem('gymrutz_dados', JSON.stringify(exercicios));
-    
-    // Limpa os campos
-    document.getElementById('nome').value = "";
-    document.getElementById('series').value = "";
-    document.getElementById('reps').value = "";
-    document.getElementById('peso').value = "";
+    if (series === "" || reps === "") {
+        alert("Preencha séries e repetições");
+        return;
+    }
 
-    alert("Salvo com sucesso!");
-    trocarTela('section-exercicios'); // Volta pra lista
+    // cria objeto do exercício
+    var exercicio = {
+
+        // se for edição usa o id antigo
+        id: idEdicao ? idEdicao : Date.now(),
+
+        nome: nome,
+        grupo: grupo,
+        series: series,
+        reps: reps,
+
+        // peso vira número
+        peso: parseFloat(peso) || 0
+    };
+
+    // ======================
+    // EDIÇÃO OU NOVO CADASTRO
+    // ======================
+
+    if (idEdicao) {
+
+        // procura o exercício para editar
+        for (var i = 0; i < exercicios.length; i++) {
+
+            if (exercicios[i].id == idEdicao) {
+
+                exercicios[i] = exercicio;
+
+            }
+
+        }
+
+        // limpa id de edição
+        document.getElementById("editId").value = "";
+
+    } else {
+
+        // adiciona novo exercício
+        exercicios.push(exercicio);
+
+    }
+
+    // salva no navegador
+    localStorage.setItem("gymrutz_dados", JSON.stringify(exercicios));
+
+    // limpa formulário
+    limparFormulario();
+
+    // atualiza tabela
+    desenharTabelas();
+
+    // volta para lista
+    trocarTela("section-exercicios");
+
 };
 
-// --- DESENHAR AS TABELAS ---
+
+// ============================
+// LIMPAR FORMULÁRIO
+// ============================
+
+// botão limpar
+document.getElementById("btnLimpar").onclick = limparFormulario;
+
+// função que limpa os campos
+function limparFormulario() {
+
+    document.getElementById("nome").value = "";
+    document.getElementById("grupo").value = "";
+    document.getElementById("series").value = "";
+    document.getElementById("reps").value = "";
+    document.getElementById("peso").value = "";
+    document.getElementById("editId").value = "";
+
+}
+
+
+// ============================
+// DESENHAR TABELAS
+// ============================
+
+// cria as linhas da tabela
 function desenharTabelas() {
-    var tabelaHome = document.getElementById('homeTableBody');
-    var tabelaLista = document.getElementById('mainTableBody');
-    
+
+    var tabelaHome = document.getElementById("homeTableBody");
+    var tabelaLista = document.getElementById("mainTableBody");
+
+    // limpa tabelas antes de desenhar
     tabelaHome.innerHTML = "";
     tabelaLista.innerHTML = "";
 
+    // percorre os exercícios
     for (var i = 0; i < exercicios.length; i++) {
-        var item = exercicios[i];
-        
-        // Coloca na tabela principal de exercícios
-        var linha = "<tr>" +
-            "<td>" + item.nome + "</td>" +
-            "<td>" + item.grupo + "</td>" +
-            "<td>" + item.series + "</td>" +
-            "<td>" + item.reps + "</td>" +
-            "<td>" + item.peso + "kg</td>" +
+
+        var e = exercicios[i];
+
+        // cria linha
+        var linha = document.createElement("tr");
+
+        // conteúdo da linha
+        linha.innerHTML =
+            "<td>" + e.nome + "</td>" +
+            "<td>" + e.grupo + "</td>" +
+            "<td>" + e.series + "</td>" +
+            "<td>" + e.reps + "</td>" +
+            "<td>" + e.peso + "kg</td>" +
             "<td>" +
-                "<button onclick='editarExercicio(" + item.id + ")'>Editar</button>" +
-                "<button onclick='apagarExercicio(" + item.id + ")'>X</button>" +
-            "</td>" +
-        "</tr>";
-        
-        tabelaLista.innerHTML += linha;
+            "<button onclick='editarExercicio(" + e.id + ")'>Editar</button>" +
+            "<button onclick='apagarExercicio(" + e.id + ")'>Excluir</button>" +
+            "</td>";
 
-        // Se for um dos últimos 3, bota na Home também
+        // adiciona na tabela principal
+        tabelaLista.appendChild(linha);
+
+        // últimos 3 aparecem na home
         if (i >= exercicios.length - 3) {
-            tabelaHome.innerHTML += linha;
+
+            var linhaHome = document.createElement("tr");
+
+            linhaHome.innerHTML =
+                "<td>" + e.nome + "</td>" +
+                "<td>" + e.grupo + "</td>" +
+                "<td>" + e.series + "</td>" +
+                "<td>" + e.peso + "kg</td>";
+
+            tabelaHome.appendChild(linhaHome);
+
         }
+
     }
+
 }
 
-// --- CARDS DE STATUS (DASHBOARD) ---
+
+// ============================
+// CARDS DA HOME
+// ============================
+
+// atualiza informações da dashboard
 function fazerResumoCards() {
-    document.getElementById('statTotal').innerHTML = exercicios.length;
-    
+
+    // total de exercícios
+    document.getElementById("statTotal").innerText = exercicios.length;
+
     var maiorPeso = 0;
+
+    // procura maior peso
     for (var i = 0; i < exercicios.length; i++) {
+
         if (exercicios[i].peso > maiorPeso) {
+
             maiorPeso = exercicios[i].peso;
+
         }
+
     }
-    document.getElementById('statMaxPeso').innerHTML = maiorPeso + "kg";
+
+    // mostra maior peso
+    document.getElementById("statMaxPeso").innerText = maiorPeso + "kg";
+
 }
 
-// --- APAGAR E EDITAR ---
-function apagarExercicio(id) {
-    if (confirm("Vai apagar mesmo?")) {
-        var novaLista = [];
-        for (var i = 0; i < exercicios.length; i++) {
-            if (exercicios[i].id != id) {
-                novaLista.push(exercicios[i]);
-            }
-        }
-        exercicios = novaLista;
-        localStorage.setItem('gymrutz_dados', JSON.stringify(exercicios));
-        desenharTabelas();
-    }
-}
+
+// ============================
+// EDITAR EXERCÍCIO
+// ============================
 
 function editarExercicio(id) {
+
     for (var i = 0; i < exercicios.length; i++) {
+
         if (exercicios[i].id == id) {
+
             var e = exercicios[i];
-            document.getElementById('nome').value = e.nome;
-            document.getElementById('grupo').value = e.grupo;
-            document.getElementById('series').value = e.series;
-            document.getElementById('reps').value = e.reps;
-            document.getElementById('peso').value = e.peso;
-            document.getElementById('editId').value = e.id;
-            
-            trocarTela('section-novo');
+
+            // coloca dados no formulário
+            document.getElementById("nome").value = e.nome;
+            document.getElementById("grupo").value = e.grupo;
+            document.getElementById("series").value = e.series;
+            document.getElementById("reps").value = e.reps;
+            document.getElementById("peso").value = e.peso;
+
+            // salva id para edição
+            document.getElementById("editId").value = e.id;
+
+            // abre tela de cadastro
+            trocarTela("section-novo");
+
         }
+
     }
+
 }
 
-// Inicia o sistema
-trocarTela('section-home');
+
+// ============================
+// EXCLUIR EXERCÍCIO
+// ============================
+
+function apagarExercicio(id) {
+
+    // confirmação
+    if (!confirm("Deseja excluir este exercício?")) return;
+
+    var novaLista = [];
+
+    // recria lista sem o item excluído
+    for (var i = 0; i < exercicios.length; i++) {
+
+        if (exercicios[i].id != id) {
+
+            novaLista.push(exercicios[i]);
+
+        }
+
+    }
+
+    exercicios = novaLista;
+
+    // salva nova lista
+    localStorage.setItem("gymrutz_dados", JSON.stringify(exercicios));
+
+    // atualiza tabela
+    desenharTabelas();
+
+}
+
+
+// ============================
+// INICIAR SISTEMA
+// ============================
+
+// abre home ao iniciar
+trocarTela("section-home");
+
+// desenha tabela caso tenha dados salvos
+desenharTabelas();
