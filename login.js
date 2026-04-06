@@ -3,6 +3,7 @@ const passwordInput = document.getElementById("password");
 const rememberCheckbox = document.getElementById("rememberMe");
 
 const btnLogin = document.getElementById("btnLogin");
+const btnCadastrar = document.getElementById("btnCadastrar");
 
 if (localStorage.getItem("rememberUser")) {
     usernameInput.value = localStorage.getItem("rememberUser");
@@ -29,4 +30,8 @@ btnLogin.addEventListener("click", function () {
 
     window.location.href = "index.html";
 
+});
+
+btnCadastrar.addEventListener("click", function () {
+    alert("Cadastro em breve!");
 });
