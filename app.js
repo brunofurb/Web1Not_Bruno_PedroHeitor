@@ -14,6 +14,7 @@ if (dadosSalvos != null) {
     exercicios = JSON.parse(dadosSalvos);
 }
 
+<<<<<<< Updated upstream
 
 // ============================
 // CARREGAR USUÁRIO DO LOGIN
@@ -55,6 +56,14 @@ function trocarTela(idTela) {
     // esconde todas
     for (var i = 0; i < telas.length; i++) {
         telas[i].style.display = "none";
+=======
+// --- NAVEGAÇÃO ---
+function trocarTela(idDaTela) {
+    // Pega todas as telas e esconde
+    var todasAsTelas = document.querySelectorAll('.tela');
+    for (var i = 0; i < todasAsTelas.length; i++) {
+        todasAsTelas[i].style.display = 'none';
+>>>>>>> Stashed changes
     }
 
     // mostra somente a tela escolhida
@@ -90,6 +99,7 @@ for (var i = 0; i < botoesMenu.length; i++) {
 }
 
 
+<<<<<<< Updated upstream
 // ============================
 // SALVAR EXERCÍCIO
 // ============================
@@ -113,6 +123,11 @@ document.getElementById("btnSalvar").onclick = function () {
 
     if (nome === "") {
         alert("Digite o nome do exercício");
+=======
+    //verifica se nao ta vazio
+    if (nomeInput == "" || grupoInput == "") {
+        alert("Preencha o nome e o grupo pelo menos!");
+>>>>>>> Stashed changes
         return;
     }
 
