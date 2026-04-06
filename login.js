@@ -16,4 +16,10 @@ btnLogin.addEventListener("click", function () {
         return;
     }
 
+    // salva usuário na sessão
+    sessionStorage.setItem("loggedUser", user);
+
+    // redireciona para o sistema
+    window.location.href = "index.html";
+
 });
