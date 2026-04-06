@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #121212; /* Fundo escuro padrão */
+    background-color: #121212;
     color: #ffffff;
     font-family: 'DM Sans', sans-serif;
 }
@@ -16,7 +16,7 @@ a {
 .topo {
     background-color: #1a1a1a;
     padding: 15px 30px;
-    border-bottom: 2px solid #e8ff00; /* Linha amarela gym */
+    border-bottom: 2px solid #e8ff00; 
     overflow: hidden; 
 }
 
@@ -36,19 +36,17 @@ a {
     font-size: 14px;
 }
 
-/* Container dos cards para ficarem lado a lado */
 .cards-topo {
     display: flex;
     gap: 15px;
     margin-bottom: 30px;
 }
 
-/* O card individual */
 .card {
     background-color: #1a1a1a;
     padding: 20px;
     border: 1px solid #333;
-    flex: 1; /* Faz todos terem o mesmo tamanho */
+    flex: 1; 
     text-align: center;
     border-radius: 5px;
 }
@@ -86,10 +84,9 @@ h3 {
     color: #e8ff00;
 }
 
-/* Tabela com cara de projeto de aula */
 table {
     width: 100%;
-    border-collapse: collapse; /* Tira os vãos entre as células */
+    border-collapse: collapse; 
     margin-top: 10px;
 }
 
@@ -108,10 +105,84 @@ td {
 }
 
 tr:hover {
-    background-color: #252525; /* Efeito ao passar o mouse */
+    background-color: #252525; 
 }
 
 .menu a.link-menu {
-    color: #ff4d00; /* Laranja para destacar o sair */
+    color: #ff4d00; 
     margin-top: 20px;
+}
+
+.corpo-login {
+    background-color: #121212;
+    font-family: 'DM Sans', sans-serif;
+    color: white;
+    margin-top: 100px; 
+    text-align: center;
+}
+
+.caixa-login {
+    background-color: #1a1a1a;
+    width: 350px;
+    margin: 0 auto;
+    padding: 30px;
+    border: 2px solid #333; 
+}
+
+.login-topo h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    color: #e8ff00;
+    font-size: 45px;
+    margin-bottom: 5px;
+}
+
+.form-login input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background: #222;
+    border: 1px solid #555;
+    color: white;
+}
+
+.btn-entrar {
+    width: 95%;
+    padding: 12px;
+    background-color: #e8ff00;
+    color: black;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-entrar:hover {
+    background-color: #ffff00; 
+}
+
+.ou {
+    margin: 10px 0;
+    font-size: 12px;
+    color: #888;
+}
+
+
+.btn-registrar {
+    width: 95%;
+    padding: 8px;
+    background: none;
+    border: 1px solid #e8ff00;
+    color: #e8ff00;
+    cursor: pointer;
+}
+
+.modal-simples {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    background: #1a1a1a;
+    border: 3px solid #e8ff00;
+    padding: 20px;
+    z-index: 100;
 }
