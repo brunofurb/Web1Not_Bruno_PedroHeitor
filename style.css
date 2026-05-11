@@ -357,25 +357,43 @@ tr:hover {
     background: #252525;
 }
 
+
 .md-label {
     position: absolute;
-    top: 18px;
     left: 16px;
-    color: #aaa;
-    background: #1a1a1a;
-    padding: 0 4px;
-    transition: 0.2s;
+    top: 18px;
+    font-size: 16px;
+    color: #888; 
     pointer-events: none;
+    transition: all 0.2s ease;
+    z-index: 1;
+}
+
+.md-input:placeholder-shown:not(:focus) + .md-label {
+    top: 18px;
+    font-size: 16px;
+    color: #888;
 }
 
 .md-input:focus + .md-label,
-.md-input:not(:placeholder-shown) + .md-label,
-.md-input:valid + .md-label {
-    top: -10px;
+.md-input:not(:placeholder-shown) + .md-label {
+    top: 8px;
+    font-size: 12px;
+    color: #e8ff00; 
+}
+
+.md-input-group select:invalid:not(:focus) + .md-label {
+    top: 18px;
+    font-size: 16px;
+    color: #888;
+}
+
+.md-input-group select:focus + .md-label,
+.md-input-group select:valid + .md-label {
+    top: 8px;
     font-size: 12px;
     color: #e8ff00;
 }
-
 .md-btn {
     height: 42px;
     border-radius: 20px;
