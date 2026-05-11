@@ -267,11 +267,12 @@ tr:hover {
 }
 
 .caixa-login {
-    background-color: #1a1a1a;
-    width: 350px;
+    width: 380px;
     margin: 0 auto;
-    padding: 30px;
-    border: 2px solid #333; 
+    padding: 40px;
+    border-radius: 28px;
+    background: #1e1e1e;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
 }
 
 .login-topo h1 {
