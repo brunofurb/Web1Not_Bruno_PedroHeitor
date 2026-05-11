@@ -234,8 +234,14 @@ function desenharTabelas() {
             "<td>" + e.reps + "</td>" +
             "<td>" + e.peso + "kg</td>" +
             "<td>" +
-            "<button onclick='editarExercicio(" + e.id + ")'>Editar</button>" +
-            "<button onclick='apagarExercicio(" + e.id + ")'>Excluir</button>" +
+            "<div class='table-actions'>" +
+            "<button class='btn-table btn-edit' onclick='editarExercicio(" + e.id + ")'>" +
+            "Editar" +
+            "</button>" +
+            "<button class='btn-table btn-delete' onclick='apagarExercicio(" + e.id + ")'>" +
+            "Excluir" +
+            "</button>" +
+            "</div>" +
             "</td>";
 
         // adiciona na tabela principal
