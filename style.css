@@ -7,27 +7,107 @@
 body {
     background-color: #121212;
     color: #ffffff;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Roboto', 'DM Sans', sans-serif; 
 }
 
-a {
-    text-decoration: none;
-}
 .topo {
     background-color: #1a1a1a;
-    padding: 15px 30px;
-    border-bottom: 2px solid #e8ff00; 
-    overflow: hidden; 
+    height: 64px; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    border-bottom: 2px solid #e8ff00;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .logo {
-    float: left;
+    display: flex;
+    align-items: center;
+    gap: 12px;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
+    font-size: 24px;
     color: #e8ff00;
+    letter-spacing: 1.5px;
     cursor: pointer;
+    text-transform: uppercase;
 }
 
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+.conteudo { flex: 1; padding: 25px; }
+.tela { display: none; }
+.tela.active { display: block; }
+
+.menu {
+    width: 256px; 
+    background-color: #1a1a1a;
+    border-right: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 0;
+}
+
+.menu p {
+    padding: 0 16px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+.link-menu {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 12px 16px;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    transition: background 0.2s;
+}
+
+.link-menu:hover {
+    background-color: rgba(232, 255, 0, 0.08); 
+    color: #e8ff00;
+}
+
+.link-menu.active {
+    background-color: rgba(232, 255, 0, 0.12);
+    color: #e8ff00;
+}
+
+.menu a.link-menu {
+    margin-top: auto; 
+    color: #ff4d00;
+    border-top: 1px solid #333;
+    text-decoration: none;
+}
+
+.md-table-container {
+    background-color: #1a1a1a;
+    border-radius: 4px;
+    border: 1px solid #222;
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.md-data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
 .usuario {
     float: right;
     background: #333;
