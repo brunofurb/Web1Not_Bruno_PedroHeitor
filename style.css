@@ -265,7 +265,6 @@ tr:hover {
     border-color: #666;
 }
 
-/* --- LOGIN REFEITO (ESTILO M3 FINAL) --- */
 
 .corpo-login {
     background-color: #121212;
@@ -279,8 +278,8 @@ tr:hover {
 .caixa-login {
     background-color: #1a1a1a;
     width: 100%;
-    max-width: 400px; /* Largura ideal para card de login */
-    padding: 48px 32px; /* Aumentado para dar mais respiro */
+    max-width: 400px; 
+    padding: 48px 32px; 
     border-radius: 28px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.6);
     text-align: center;
@@ -301,14 +300,12 @@ tr:hover {
     font-size: 14px;
 }
 
-/* Ajuste dos Grupos de Input */
 .md-input-group {
     position: relative;
-    margin-bottom: 24px; /* Espaço entre Usuário e Senha */
+    margin-bottom: 24px; 
     text-align: left;
 }
 
-/* Alinhamento do Checkbox "Lembrar-me" */
 .login-options {
     display: flex;
     justify-content: center;
@@ -319,7 +316,7 @@ tr:hover {
 .remember-label {
     display: flex;
     align-items: center;
-    gap: 12px; /* Espaço entre o quadrado e o texto */
+    gap: 12px; 
     color: #bbb;
     font-size: 14px;
     cursor: pointer;
@@ -328,11 +325,10 @@ tr:hover {
 .remember-label input[type="checkbox"] {
     width: 18px;
     height: 18px;
-    accent-color: #e8ff00; /* Deixa o check amarelo */
+    accent-color: #e8ff00; 
     cursor: pointer;
 }
 
-/* Botões */
 .login-btn {
     width: 100%;
     height: 48px;
